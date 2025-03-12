@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="متجر الحاسوب - وجهتك لشراء ملحقات الكمبيوتر عالية الجودة">
+  <title>متجر الحاسوب - سوق ملحقات الكمبيوتر</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --primary-bg: #1a1a1a;
+      --text-light: #ffffff;
+      --accent-gradient: linear-gradient(135deg, #2563eb, #3b82f6);
+      --product-bg: #ffffff;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.15);
+      --header-height: 72px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius-md: 12px;
+      --max-width: 1280px;
+    }
+
+    /* Reset */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 1rem);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    header.header {
+      background: rgba(26, 26, 26, 0.95);
+      color: var(--text-light);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: var(--header-height);
+      padding: 0 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+    }
+
+    .logo {
+      font-size: clamp(1.25rem, 4vw, 1.75rem);
+      font-weight: 700;
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      opacity: 0.9;
+    }
+
+    nav {
+      /* تحسين الوصولية */
+    }
+
+    .nav-list {
+      display: flex;
+      gap: clamp(1.25rem, 4vw, 2rem);
+      list-style: none;
+    }
+
+    .nav-link {
+      color: inherit;
+      font-size: 0.95rem;
+      padding: 0.5rem;
+      text-decoration: none;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: currentColor;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link:focus-visible::after {
+      width: 100%;
+    }
+
+    /* Main content area */
+    main.main-content {
+      padding: calc(var(--header-height) + 2rem) 1rem 2rem;
+      width: min(100% - 2rem, var(--max-width));
+      margin-inline: auto;
+    }
+
+    /* Products grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: 1.75rem;
+      padding: 1rem 0;
+    }
+
+    .product-card {
+      background: var(--product-bg);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      background: #f5f5f5;
+      padding: 0.5rem;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+      flex-grow: 1;
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      color: #2563eb;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+      text-decoration: none;
+    }
+
+    .btn--primary {
+      background: var(--accent-gradient);
+      color: var(--text-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn--primary:hover {
+      opacity: 0.95;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+    }
+
+    /* Footer */
+    footer.footer {
+      background: var(--primary-bg);
+      color: var(--text-light);
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      header.header {
+        padding: 0 1.25rem;
+        height: 64px;
+      }
+      
+      .nav-list {
+        gap: 1rem;
+      }
+      
+      .product-card {
+        padding: 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-list {
+        gap: 0.75rem;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header" role="banner">
+    <a href="#" class="logo">متجر الحاسوب</a>
+    <nav role="navigation" aria-label="القائمة الرئيسية">
+      <ul class="nav-list">
+        <li><a href="#" class="nav-link">الرئيسية</a></li>
+        <li><a href="#" class="nav-link">المنتجات</a></li>
+        <li><a href="#" class="nav-link">اتصل بنا</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content" role="main">
+    <section class="products-grid" aria-label="قائمة المنتجات">
+      <!-- منتج 1 -->
+      <article class="product-card">
+        <img src="./IMAGE/IMG_20250311_161257_589.jpg" alt="كاميرا حاسوب مع ميكروفون" class="product-image">
+        <h3 class="product-title">كاميرا حاسوب مع ميكروفون</h3>
+        <p class="product-price">20 DH</p>
+        <a href="https://wa.me/0651018525?text=اهتمام%20بالمنتج:%20كاميرا%20حاسوب%20مع%20ميكروفون" class="btn btn--primary">اطلب الآن</a>
+      </article>
+
+      <!-- منتج 2 -->
+      <article class="product-card">
+        <img src="./IMAGE/IMG_20250311_161303_723.jpg" alt="جهاز تحكم لـ PS2 و PS3 والحاسوب" class="product-image">
+        <h3 class="product-title">جهاز تحكم لـ PS2, PS3 والحاسوب</h3>
+        <p class="product-price">30 DH</p>
+        <a href="https://wa.me/0651018525?text=اهتمام%20بالمنتج:%20جهاز%20تحكم%20لـ%20PS2,%20PS3%20والحاسوب" class="btn btn--primary">اطلب الآن</a>
+      </article>
+
+      <!-- منتج 3 -->
+      <article class="product-card">
+        <img src="./IMAGE/IMG_20250311_161307_537.jpg" alt="ميكروفون احترافي للحاسوب" class="product-image">
+        <h3 class="product-title">ميكروفون احترافي للحاسوب</h3>
+        <p class="product-price">20 DH</p>
+        <a href="https://wa.me/0651018525?text=اهتمام%20بالمنتج:%20ميكروفون%20احترافي%20للحاسوب" class="btn btn--primary">اطلب الآن</a>
+      </article>
+
+      <!-- منتج 4 -->
+      <article class="product-card">
+        <img src="./IMAGE/IMG_20250311_161311_817.jpg" alt="حاسوب محمول بنظام Windows XP" class="product-image">
+        <h3 class="product-title">حاسوب محمول بنظام Windows XP</h3>
+        <p class="product-price">200 DH</p>
+        <a href="https://wa.me/0651018525?text=اهتمام%20بالمنتج:%20حاسوب%20محمول%20بنظام%20Windows%20XP" class="btn btn--primary">اطلب الآن</a>
+      </article>
+
+      <!-- منتج 5 -->
+      <article class="product-card">
+        <img src="./IMAGE/IMG_20250311_161315_514.jpg" alt="عجلة قيادة لجهاز PS2" class="product-image">
+        <h3 class="product-title">عجلة قيادة لجهاز PlayStation 2</h3>
+        <p class="product-price">100 DH</p>
+        <a href="https://wa.me/0651018525?text=اهتمام%20بالمنتج:%20عجلة%20قيادة%20لجهاز%20PlayStation%202" class="btn btn--primary">اطلب الآن</a>
+      </article>
+
+      <!-- منتج 6 -->
+      <article class="product-card">
+        <img src="./IMAGE/IMG_20250311_161325_489.jpg" alt="فأرة بلوتوث لاسلكية" class="product-image">
+        <h3 class="product-title">فأرة بلوتوث لاسلكية</h3>
+        <p class="product-price">50 DH</p>
+        <a href="https://wa.me/0651018525?text=اهتمام%20بالمنتج:%20فأرة%20بلوتوث%20لاسلكية" class="btn btn--primary">اطلب الآن</a>
+      </article>
+
+      <!-- منتج 7 -->
+      <article class="product-card">
+        <img src="./IMAGE/IMG_20250311_161322_340.jpg" alt="جهاز تحكم Xbox 360" class="product-image">
+        <h3 class="product-title">جهاز تحكم Xbox 360</h3>
+        <p class="product-price">100 DH</p>
+        <a href="https://wa.me/0651018525?text=اهتمام%20بالمنتج:%20جهاز%20تحكم%20Xbox%20360" class="btn btn--primary">اطلب الآن</a>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <p>© 2025 متجر الحاسوب. جميع الحقوق محفوظة.</p>
+  </footer>
+</body>
+</html>
